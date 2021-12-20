@@ -110,40 +110,42 @@ public class EnemyController : MonoBehaviour
 
             else // when it's time for enemy to shoot on us
             {
-                shootTimeCounter -= Time.deltaTime;
-
-                if (shootTimeCounter > 0)
+                if (PlayerController.instance.gameObject.activeInHierarchy) // prevent player from shooting after we lose
                 {
-                    fireCount -= Time.deltaTime;
+                    shootTimeCounter -= Time.deltaTime;
 
-                    if (fireCount <= 0)
+                    if (shootTimeCounter > 0)
                     {
-                        fireCount = fireRate; // fireRate set in inspector to 0.3
-                        // adding little bit in the y axis, so that enemy don't look at our feet
-                        firePoint.LookAt(PlayerController.instance.transform.position + new Vector3(0f, 1.2f, 0f)); // now enemy bullets go towards us (not always horizontally moving)
+                        fireCount -= Time.deltaTime;
 
-                        // check angle of the player
-                        Vector3 targetDir = PlayerController.instance.transform.position - transform.position;
-                        float angle = Vector3.SignedAngle(targetDir, transform.forward, Vector3.up);
-                        if (Mathf.Abs(angle) < 30f)
+                        if (fireCount <= 0)
                         {
-                            Instantiate(bullet, firePoint.position, firePoint.rotation);
-                            anim.SetTrigger("fireShot"); // that's how we trigger the trigger variable
-                        }
-                        else
-                        {
-                            shotWaitCounter = waitBetweenShots;
-                        }
+                            fireCount = fireRate; // fireRate set in inspector to 0.3
+                                                  // adding little bit in the y axis, so that enemy don't look at our feet
+                            firePoint.LookAt(PlayerController.instance.transform.position + new Vector3(0f, 1.2f, 0f)); // now enemy bullets go towards us (not always horizontally moving)
 
+                            // check angle of the player
+                            Vector3 targetDir = PlayerController.instance.transform.position - transform.position;
+                            float angle = Vector3.SignedAngle(targetDir, transform.forward, Vector3.up);
+                            if (Mathf.Abs(angle) < 30f)
+                            {
+                                Instantiate(bullet, firePoint.position, firePoint.rotation);
+                                anim.SetTrigger("fireShot"); // that's how we trigger the trigger variable
+                            }
+                            else
+                            {
+                                shotWaitCounter = waitBetweenShots;
+                            }
+
+                        }
+                        agent.destination = transform.position;
                     }
-                    agent.destination = transform.position;
+                    else // shootTimeCounter is below 0
+                    {
+                        shotWaitCounter = waitBetweenShots;
+                    }
+                    anim.SetBool("isMoving", false);
                 }
-                else // shootTimeCounter is below 0
-                {
-                    shotWaitCounter = waitBetweenShots;
-                }
-                anim.SetBool("isMoving", false);
-
             }
         }
     }

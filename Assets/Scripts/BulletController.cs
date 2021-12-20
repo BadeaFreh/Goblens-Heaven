@@ -33,7 +33,6 @@ public class BulletController : MonoBehaviour
     private void OnTriggerEnter(Collider other) // other is the collider we interacted with
     {
 
-        
         if (other.gameObject.tag == "Enemy" && damageEnemy) // if the object is enemy, destroy it
         {
             // Destroy(other.gameObject);
@@ -41,16 +40,18 @@ public class BulletController : MonoBehaviour
             other.gameObject.GetComponent<EnemyHealthController>().DamageEnemy(damage);
         }
 
-        if (other.gameObject.tag == "EnemyHead" && damageEnemy)
-        {
-            other.transform.parent.GetComponent<EnemyHealthController>().DamageEnemy(damage*2);
-            Debug.Log("Head Shot");
-        }
+        // headshot is boring .. commenting it
+        // if (other.gameObject.tag == "EnemyHead" && damageEnemy)
+        // {
+        //     other.transform.parent.GetComponent<EnemyHealthController>().DamageEnemy(damage*2);
+        //     Debug.Log("Head Shot");
+        // }
 
 
         if (other.gameObject.tag == "Player" && damagePlayer) // if we got hit by enemy bullet
         {
-            Debug.Log("We got Hit at " + transform.position);
+            // Debug.Log("We got Hit at " + transform.position);
+            PlayerHealthController.instance.DamagePlayer(damage);
         }
 
         Destroy(gameObject);
