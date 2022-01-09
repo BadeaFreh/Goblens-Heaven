@@ -20,7 +20,7 @@ public class VectoryScreen : MonoBehaviour
     }
 
     // gets called when pressing the MainMenu Button (assigned in the inspector)
-    public void MainMenu()
+    public void MainMenu() // function for the Main Menu button
     {
         SceneManager.LoadScene(mainMenuScene);
     }

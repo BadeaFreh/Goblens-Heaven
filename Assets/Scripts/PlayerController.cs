@@ -10,8 +10,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 moveInput;
     public Transform camTrans;
     public float mouseSensitivity;
-    public bool invertX;
-    public bool invertY;
+
     private bool canJump, canDoubleJump;
     public Transform groundCheckPoint;
     public LayerMask whatIsGround;
@@ -80,7 +79,7 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) && canJump) // we did first jump
             {
                 moveInput.y = jumpPower;
-                canDoubleJump = true;
+                // canDoubleJump = true;
                 AudioManager.instance.PlaySXF(5);
             }
 
@@ -95,17 +94,6 @@ public class PlayerController : MonoBehaviour
 
             // control camera rotation
             Vector2 mouseInput = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y")) * mouseSensitivity;
-
-            // for testing in UNITY: change invertX and invertY
-            if (invertX)
-            {
-                mouseInput.x = -mouseInput.x;
-            }
-
-            if (invertY)
-            {
-                mouseInput.y = -mouseInput.y;
-            }
 
             // transform object: whatever this object is attached to (player in this case), get the transform of it
             transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + mouseInput.x

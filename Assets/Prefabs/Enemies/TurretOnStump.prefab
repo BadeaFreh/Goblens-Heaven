@@ -39,6 +39,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5832197128182666657}
     m_Modifications:
+    - target: {fileID: 8458568579650302800, guid: d90e28c28db358142b1f305764ddc68b, type: 3}
+      propertyPath: timeBetweenShots
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 8458568579650302802, guid: d90e28c28db358142b1f305764ddc68b, type: 3}
       propertyPath: m_Name
       value: Turret

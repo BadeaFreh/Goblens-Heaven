@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8458568579650302803}
   - component: {fileID: 8458568579650302800}
+  - component: {fileID: 4538246136109536510}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Enemy
@@ -77,10 +78,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 7186393245034950284, guid: 648c7fd36adceba488ba47aa179aad3a, type: 3}
   rangeToTargetPlayer: 50
-  timeBetweenShots: 0.5
+  timeBetweenShots: 0.3
   gun: {fileID: 5640840558495715879}
   firePoint: {fileID: 8458568579702970794}
   rotateSpeed: 5
+--- !u!114 &4538246136109536510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8458568579650302802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67a40a83335fbfe4794897ba3ea07a50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 10
 --- !u!1 &8458568579702970797
 GameObject:
   m_ObjectHideFlags: 0

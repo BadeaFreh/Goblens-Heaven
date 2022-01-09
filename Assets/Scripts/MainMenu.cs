@@ -6,12 +6,13 @@ public class MainMenu : MonoBehaviour
     public string firstLevel; // storing here the name of the scene as string
 
 
-    public void PlayGame()
+    // there is a function for each button
+    public void PlayGame() // function for the Play button
     {
         SceneManager.LoadScene(firstLevel);
     }
 
-    public void QuitGame()
+    public void QuitGame() // function for the Quit button
     {
         Application.Quit(); // quitting the game
         Debug.Log("Quitting Game");
